@@ -1,7 +1,3 @@
-#####################################
-##  This script define the teams   ##
-#####################################
-
 class Team:
     def __init__(self, name):
 
@@ -14,3 +10,4 @@ class Team:
         Method to add a brawler in a Team
         '''
         self.brawlers.append(brawler) 
+
