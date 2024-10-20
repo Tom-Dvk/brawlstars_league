@@ -1,16 +1,24 @@
 from brawler import Brawler
 import random
+from team import Team
+
 class Player:
     def __init__(self, name):
         self.name = name
-        self.brawlers = []  # List of the player's 3 chosen Brawlers
+        self.team = Team(f"{self.name}'s Team")  # Each player has a team of 3 Brawlers
         self.deck = []  # The deck of 10 cards
         self.hand = []  # The player's current hand of cards
         self.actions_per_turn = 3
 
     def choose_brawlers(self, available_brawlers):
         """Allow the player to choose 3 Brawlers."""
-        self.brawlers = random.sample(available_brawlers, 3)  # For simplicity, use random selection for now then we will use player input
+        chosen_brawlers = random.sample(available_brawlers, 3)  # For simplicity, use random selection for now then we will use player input
+        for brawler in chosen_brawlers:
+            self.team.add_brawler(brawler)
+    
+    def display_team(self):
+        """Display the player's team of Brawlers."""
+        self.team.display_team()
     
     def build_deck(self):
         """Build a deck of cards based on chosen Brawlers."""
