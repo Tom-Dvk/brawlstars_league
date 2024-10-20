@@ -27,7 +27,7 @@ class Match:
 
     def take_turn(self, team):
         """Allow a team to take its turn."""
-        print(f"{team.name} is taking their turn.")
+        print(f"{team.team_name} is taking their turn.")
         # Here you can implement actions like moving Brawlers or playing cards
         # For example:
         for brawler in team.brawlers:
