@@ -1,11 +1,13 @@
 # File for the team class
 import random
 import json
+from brawler import Brawler
 
 class Team:
     def __init__(self, team_name):
         self.team_name = team_name
         self.brawlers = []  # List of Brawlers on the team
+
 
     def add_brawler(self, brawler):
         """Add a Brawler to the team."""
@@ -22,7 +24,7 @@ class Team:
         """Display the current team setup."""
         print(f"Team {self.team_name}:")
         for b in self.brawlers:
-            print(f" - {b['name']} (Role: {b['role']}, Health: {b['basics']['health']}, Attack Damage: {b['attack']['damage']}, , Trophies: {b.get('trophies', 0)})")
+            print(f" - {b['name']} (Role: {b['role']}, Health: {b['basics']['health']}, Attack Damage: {b['attack']['damage']})")
 
     def total_trophies(self):
         """Calculate the total trophies for the team."""
@@ -34,15 +36,16 @@ class Team:
         with open(file_path, 'r') as f:
             return json.load(f)
     
+    """
     @staticmethod
     def load_trophies(file_path):
-        """Load Brawler trophies from a JSON file."""
+        '''Load Brawler trophies from a JSON file.'''
         with open(file_path, 'r') as f:
             return json.load(f)
 
     @classmethod
     def create_balanced_teams(cls, team_names, brawler_data, trophies_data):
-        """Create balanced teams based on Brawlers' trophies."""
+        '''Create balanced teams based on Brawlers' trophies.'''
         # Combine brawler data with their respective trophies
         brawlers = []
         for brawler_name, brawler_info in brawler_data.items():
@@ -63,6 +66,7 @@ class Team:
 
         return teams
 
+
 if __name__ == "__main__":
     # Load Brawlers and trophies from JSON files (replace with your file paths)
     brawler_data = Team.load_brawlers('data/brawlers_data.json')
@@ -76,3 +80,4 @@ if __name__ == "__main__":
     for team in teams.values():
         team.display_team()
         print(f"Total Trophies for {team.team_name}: {team.total_trophies()}\n")
+"""
