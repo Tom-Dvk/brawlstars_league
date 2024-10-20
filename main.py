@@ -1,5 +1,5 @@
 import pygame
-from grid_map import GridMap
+from gridmap import GridMap
 from card import CardDeck
 from brawler import Brawler
 from player import Player
@@ -20,11 +20,20 @@ card_deck = CardDeck()
 brawler1 = Brawler("Shelly", 3600, 500, 3)
 brawler2 = Brawler("Colt", 3200, 600, 4)
 
+# Create Brawlers
+brawler1 = Brawler("Shelly", 3600, 500, 3)
+brawler2 = Brawler("Colt", 3200, 600, 4)
+brawler3 = Brawler("Jessie", 3400, 400, 3)  # Add a third Brawler
+brawler4 = Brawler("Brock", 2800, 800, 5)   # Add a fourth Brawler
+
+# Make sure to pass enough Brawlers to choose from
+available_brawlers = [brawler1, brawler2, brawler3, brawler4]
+
 # Create Players
 player1 = Player("Alice")
 player2 = Player("Bob")
-player1.choose_brawlers([brawler1, brawler2])
-player2.choose_brawlers([brawler1, brawler2])
+player1.choose_brawlers(available_brawlers)
+player2.choose_brawlers(available_brawlers)
 
 # Place Brawlers on the grid (simplified example)
 grid.place_brawler(brawler1, 0, 0)
