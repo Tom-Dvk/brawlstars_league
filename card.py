@@ -1,3 +1,5 @@
+import pygame
+
 class Card:
     def __init__(self, name, effect):
         self.name = name
