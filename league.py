@@ -1,30 +1,16 @@
-######################################
-##  This script define the league   ##
-######################################
-
-
-# First Class define a game
-class Game:
-    def __init__(self, team1, team2):
-
-        self.equipe1 = team1 # We define a game by confronting two teams
-        self.equipe2 = team2
-    
-    def play_game(self): # 
-        '''
-        The method to play the game and return a winner 
-        '''
-
-        ## we have to define how a match is win for a team. Using specificities of brawlers and teams.
-        return None
-    
-class Tournament:
+class League:
     def __init__(self, teams):
+        self.teams = teams
+        self.matches = []
+        self.results = {}
 
-        self.teams = teams # Contains all the teams that are playing the tournament
+    def schedule_match(self, team1, team2, grid):
+        """Schedule a match between two teams."""
+        match = Match(team1, team2, grid)
+        self.matches.append(match)
+        print(f"Scheduled match: {team1.name} vs {team2.name}")
 
-    def simulate(self):
-        '''
-        This function simulate the whole tournament, and return the team of the winners
-        '''
-        return None
+    def play_matches(self):
+        """Play all scheduled matches."""
+        for match in self.matches:
+            match.play_match()
