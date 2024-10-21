@@ -3,7 +3,7 @@ from gridmap import GridMap
 from card import CardDeck
 from brawler import Brawler
 from player import Player
-from match import Match
+from game import Game
 
 # Initialize Pygame
 pygame.init()
