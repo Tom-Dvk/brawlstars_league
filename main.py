@@ -7,6 +7,7 @@ from game.gridmap import GridMap
 from game.brawler import Brawler
 from game.card import Card
 
+
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
 CARD_WIDTH, CARD_HEIGHT = 60, 90  # Adjust as needed

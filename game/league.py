@@ -1,4 +1,4 @@
-from match import Match
+from game import Game
 
 class League:
     def __init__(self, teams):
