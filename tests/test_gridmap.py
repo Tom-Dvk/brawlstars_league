@@ -1,5 +1,4 @@
 import pygame
-
 class GridMap:
     def __init__(self, grid_size, cell_size):
         self.grid_size = grid_size
