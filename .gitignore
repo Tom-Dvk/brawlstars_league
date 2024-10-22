@@ -5,3 +5,5 @@ Makefile
 *.pdf
 *.txt
 *.json
+*.png
+*.webp
