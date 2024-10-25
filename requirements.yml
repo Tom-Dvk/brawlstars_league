@@ -56,6 +56,7 @@ dependencies:
   - zeromq=4.3.5=hcec6c5f_0
   - zipp=3.20.2=pyhd8ed1ab_0
   - zlib=1.2.13=h4b97444_1
+  - pillow
   - pip:
       - attrs==24.2.0
       - beautifulsoup4==4.12.3
