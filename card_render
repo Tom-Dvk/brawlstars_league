@@ -2,53 +2,49 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 from pathlib import Path
 import json
+import pandas as pd
 
 
-def add_text(image_name, text, coordinates, font_size, color="black"):
+def load_details():
+
+    with open("data/brawlers_data.json", "r") as file:
+        data_br = json.load(file)
+
+    names, attack_descriptions, rarity, role, basics = [], [], [], [], []
+
+    for key, val in data_br.items():
+        names.append(key)
+        attack_descriptions.append(val.get('attack', {}).get('description'))
+        rarity.append(val.get('rarity'))
+        role.append(val.get('role'))
+        basics.append(val.get('basics'))
+
+    return names, attack_descriptions, rarity, role, basics
+
+def load_details():
     """
-    Adds text to an image at specified coordinates and displays the result.
-    
-    Arguments:
-    - image_name: name of the image to add text to
-    - text: the text to add
-    - coordinates: (x, y) tuple for text placement
-    - font_size: size of the font (default: 20)
-    - color: color of the text (default: black)
-    """
-    # Path to the image folder
-    folder_path = "assets/images/cards"
-    image_path = os.path.join(folder_path, image_name)
-    
-    # Check if the image exists
-    if os.path.exists(image_path):
-        # Open the image
-        image = Image.open(image_path)
-        
-        # Prepare to draw on the image
-        draw = ImageDraw.Draw(image)
-        
-        # Load a font (default font will be used if no font path is specified)
-        try:
-            font = ImageFont.truetype("arial.ttf", font_size)
-        except IOError:
-            font = ImageFont.load_default()
-        
-        # Add text to the image
-        draw.text(coordinates, text, fill=color, font=font,font_size=font_size)
-        
-        # Display the image with text
-        image.show()
-    else:
-        print(f"The image {image_name} was not found in {folder_path}.")
+    Load the brawlers details that are usefull to fill cards.
 
-# Example usage
-# add_text("template_shelly.png", "Legendary Card", (115, 730), font_size=200, color="black")
-#display_image("template_shelly.png")  # Replace with your image file name
-# image = Image.open("assets/images/cards/template_shelly.png")
-# draw = ImageDraw.Draw(image)
-# font = ImageFont.truetype(str(Path(__file__).parent / "assets/font/Hey Comic.ttf"), size=24)
-# draw.text((20,20),"Test",fill="black",font=font)
-# image.show()
+    Returns:
+    - Clean dataframe with brawlers details
+    """
+
+    with open("data/brawlers_data.json", "r") as file:
+        data_br = json.load(file)
+
+    data = []
+
+    for key, val in data_br.items():
+        data.append({
+            "name": key,
+            "attack_description": val.get('attack', {}).get('description'),
+            "rarity": val.get('rarity'),
+            "role": val.get('role'),
+            "basics": val.get('basics')
+        })
+
+    df = pd.DataFrame(data)
+    return df
 
 def card_render(image_name):
     """
@@ -79,9 +75,17 @@ def card_render(image_name):
 
 
 if __name__ == "__main__":
+    
+    brawler_df = load_details()
+
+    for index, row in brawler_df.iterrows():
+        print(index, row)
+        break
+
+
     # Load brawler data 
-    with open("data/brawlers_data.json", "r") as file:
-        data_br = json.load(file)
-    print(data_br.keys())
+    #load_details()
+    #print(data_br.keys())
+    #print(data_br['Shelly']['attack']['description'])
     #card_render("template_shelly.png")
 
